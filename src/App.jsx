@@ -7,14 +7,7 @@ function App() {
   const userLoged = () => {
     setLogin(true);
   };
-  return (
-    <div className="App">
-      <div className="bg-green-500 rounded-3xl px-3 py-1 m-18">
-        MOLIBUS WITH UX Design v. 1.0.1
-      </div>
-      {login ? <LandingPage /> : <Login />}
-    </div>
-  );
+  return <div className="App"> {login ? <LandingPage /> : <Login />}</div>;
 }
 
 export default App;

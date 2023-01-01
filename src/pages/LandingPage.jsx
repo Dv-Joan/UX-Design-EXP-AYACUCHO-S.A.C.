@@ -1,7 +1,7 @@
-import PanelController from "./pages/PanelController";
-import Passenger from "./pages/Passenger";
-import Contable from "./pages/Contable";
-import Encomiendas from "./pages/Encomiendas";
+import PanelController from "./PanelController";
+import Passenger from "./Passenger";
+import Contable from "./Contable";
+import Encomiendas from "./Encomiendas";
 
 function LandingPage() {
   return (
