@@ -1,13 +1,14 @@
-import { useState } from "react";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
+import PanelController from "./pages/PanelController";
 
 function App() {
-  const [login, setLogin] = useState(false);
-  const userLoged = () => {
-    setLogin(true);
-  };
-  return <div className="App"> {login ? <LandingPage /> : <Login />}</div>;
+  return (
+    <div className="App">
+      {/* <PanelController /> */}
+      <Login />
+    </div>
+  );
 }
 
 export default App;

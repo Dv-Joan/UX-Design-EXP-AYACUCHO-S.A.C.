@@ -6,6 +6,8 @@ module.exports = {
       fontFamily: {
         Mansalva: ["Mansalva"],
         Literata: ["Literata"],
+        MPLUS2: ["M PLUS 2"],
+        MPLUS1: ["M PLUS 1"],
       },
     },
   },

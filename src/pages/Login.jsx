@@ -1,11 +1,11 @@
-import logo from "./../assets/icons8_bus_64px_1.png";
+import logo from "./../assets/logo.png";
 
 function Login() {
   return (
     <div className="my-5 mx-5">
       <header>
-        <div className="flex ml-10 gap-1 ">
-          <img className="w-16 h-16" src={logo} alt="logo" />
+        <div className="flex gap-1 ">
+          <img className="w-[60px] h-[60px]" src={logo} alt="logo" />
           <h2 className="text-center font-bold font-Mansalva text-xl mt-1">
             Expreso <br /> Ayacucho
           </h2>
@@ -50,7 +50,7 @@ function Login() {
                   Recordar contraseña
                 </label>
               </div>
-              <button className="bg-[#322F2F] mt-10 hover:bg-[#141313] text-white py-3 px-4">
+              <button className="bg-[#191818] mt-10 hover:bg-[#141313] text-white py-3 px-4">
                 Ingresar
               </button>
             </form>
