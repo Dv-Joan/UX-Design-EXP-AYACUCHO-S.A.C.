@@ -4,7 +4,7 @@ import facturaThumbnail from "../assets/factura.png";
 
 function Boletos_Card() {
   return (
-    <div class="text-white w-[450px] h-[307px] rounded-xl ml-[104px] group flex flex-col bg-[#0F1322] hover:scale-105 drop-shadow-lg  ease-out duration-300 cursor-pointer  shadow-xl ">
+    <div class="text-white w-[450px] h-[307px] rounded-xl ml-[78px] group flex flex-col bg-[#0F1322] hover:scale-105 drop-shadow-lg  ease-out duration-300 cursor-pointer  shadow-xl ">
       <h3 className="font-MPLUS2 pl-7 pt-2 font-semibold text-[32px] text-left">
         BOLETOS
       </h3>

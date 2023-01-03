@@ -3,7 +3,7 @@ import busThumbnail from "../assets/bus.png";
 
 function Viajes_Card() {
   return (
-    <div class="text-white w-[450px] h-[307px] rounded-xl mt-[54px] group flex flex-col bg-[#0F1322] hover:scale-105 drop-shadow-lg  ease-out duration-300 cursor-pointer  shadow-xl ">
+    <div class="text-white w-[450px] h-[307px] rounded-xl mt-[64px] group flex flex-col bg-[#0F1322] hover:scale-105 drop-shadow-lg  ease-out duration-300 cursor-pointer  shadow-xl ">
       <h3 className="font-MPLUS2 pl-7 pt-2 font-semibold text-[32px] text-left">
         VIAJES
       </h3>

@@ -1,5 +1,9 @@
 function Contable() {
-  return <div>Contable</div>;
+  return (
+    <div className="bg-[#F3F1EF] w-[1450px] h-screen rounded-l-xl">
+      Contable
+    </div>
+  );
 }
 
 export default Contable;
