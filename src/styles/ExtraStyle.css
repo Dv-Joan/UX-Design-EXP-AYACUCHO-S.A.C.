@@ -1,0 +1,36 @@
+.styled-btn {
+  border: none;
+  color: #4b5563;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  background-size: 100% auto;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 0.4em 1.5em 0.6em 1.5em;
+}
+
+.styled-btn:hover {
+  background-position: right center;
+  background-size: 200% auto;
+  -webkit-animation: pulse 2s infinite;
+  animation: pulse512 1.5s infinite;
+  background-color: #e5e7eb;
+}
+
+@keyframes pulse512 {
+  0% {
+    box-shadow: 0 0 0 0 #3e404066;
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+  }
+}
+
+.eye-button svg:active {
+  fill: black;
+}

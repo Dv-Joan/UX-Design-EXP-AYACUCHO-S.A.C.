@@ -5,6 +5,7 @@ import llenandoIcon from "../assets/icons/llenando-icon.png";
 import placaIcon from "../assets/icons/placa-icon.png";
 import horaIcon from "../assets/icons/hora-icon.png";
 import verIcon from "../assets/icons/ver-icon.png";
+import "../styles/ExtraStyle.css";
 
 function Pasajes() {
   const [value, setValue] = useState({
@@ -28,12 +29,12 @@ function Pasajes() {
               >
                 VIAJES DISPONIBLES
               </p>
-              <div class="py-3 px-4 flex gap-5 text-sm font-medium text-gray-600  rounded">
+              <div class="py-3 px-4 flex gap-5 text-sm font-medium text-gray-600">
                 <p className="font-bold text-[16px] mt-2">Fecha : </p>
                 <div className="font-Roboto">
                   <Datepicker
                     inputClassName={
-                      "w-[200px] h-[35px] rounded-lg bg-gray-200 border border-gray-300"
+                      "w-[200px] h-[35px] rounded-lg bg-gray-200 border border-gray-300 cursor-pointer"
                     }
                     useRange={false}
                     primaryColor={"cyan"}
@@ -183,23 +184,31 @@ function Pasajes() {
                     </td>
 
                     <td class="pl-4">
-                      <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none font-Roboto font-bold tracking-wide">
+                      <button className="styled-btn font-bold">
                         Registrar
                       </button>
                     </td>
                     <td>
-                      <div class="relative pr-3 pt-2">
-                        <button
-                          class="focus:ring-2 rounded-md focus:outline-none"
-                          onclick="dropdownFunction(this)"
-                          role="button"
-                          aria-label="option"
-                        >
-                          <img
-                            src={verIcon}
-                            className="h-6 w-6"
-                            alt="verIcon"
-                          />
+                      <div>
+                        <button className="eye-button pt-2 duration-300 pr-3">
+                          <svg
+                            fill="#5F6061"
+                            height="22px"
+                            width="22px"
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                            enable-background="new 0 0 512 512"
+                            stroke="#323842"
+                            className="hover:fill-current hover:text-gray-600 duration-300 hover:stroke-current hover:scale-125 transform-gpu"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              {" "}
+                              <path d="M0,226v32c128,192,384,192,512,0v-32C384,34,128,34,0,226z M256,370c-70.7,0-128-57.3-128-128s57.3-128,128-128 s128,57.3,128,128S326.7,370,256,370z M256,170c0-8.3,1.7-16.1,4.3-23.6c-1.5-0.1-2.8-0.4-4.3-0.4c-53,0-96,43-96,96s43,96,96,96 c53,0,96-43,96-96c0-1.5-0.4-2.8-0.4-4.3c-7.4,2.6-15.3,4.3-23.6,4.3C288.2,242,256,209.8,256,170z"></path>{" "}
+                            </g>
+                          </svg>
                         </button>
                       </div>
                     </td>
@@ -306,23 +315,31 @@ function Pasajes() {
                       </div>
                     </td>
                     <td class="pl-4">
-                      <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none font-Roboto font-bold tracking-wide">
+                      <button className="styled-btn font-bold">
                         Registrar
                       </button>
                     </td>
                     <td>
-                      <div class="relative pr-3 pt-2">
-                        <button
-                          class="focus:ring-2 rounded-md focus:outline-none"
-                          onClick="dropdownFunction(this)"
-                          role="button"
-                          aria-label="option"
-                        >
-                          <img
-                            src={verIcon}
-                            className="h-6 w-6"
-                            alt="verIcon"
-                          />
+                      <div>
+                        <button className="eye-button pt-2 duration-300 pr-3 ">
+                          <svg
+                            fill="#5F6061"
+                            height="22px"
+                            width="22px"
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                            enable-background="new 0 0 512 512"
+                            stroke="#323842"
+                            className="hover:fill-current hover:text-gray-600 duration-300 hover:stroke-current hover:scale-125 transform-gpu"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              {" "}
+                              <path d="M0,226v32c128,192,384,192,512,0v-32C384,34,128,34,0,226z M256,370c-70.7,0-128-57.3-128-128s57.3-128,128-128 s128,57.3,128,128S326.7,370,256,370z M256,170c0-8.3,1.7-16.1,4.3-23.6c-1.5-0.1-2.8-0.4-4.3-0.4c-53,0-96,43-96,96s43,96,96,96 c53,0,96-43,96-96c0-1.5-0.4-2.8-0.4-4.3c-7.4,2.6-15.3,4.3-23.6,4.3C288.2,242,256,209.8,256,170z"></path>{" "}
+                            </g>
+                          </svg>
                         </button>
                       </div>
                     </td>
@@ -430,23 +447,31 @@ function Pasajes() {
                     </td>
 
                     <td class="pl-4">
-                      <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none font-Roboto font-bold tracking-wide">
+                      <button className="styled-btn font-bold">
                         Registrar
                       </button>
                     </td>
                     <td>
-                      <div class="relative pr-3 pt-2">
-                        <button
-                          class="focus:ring-2 rounded-md focus:outline-none"
-                          onclick="dropdownFunction(this)"
-                          role="button"
-                          aria-label="option"
-                        >
-                          <img
-                            src={verIcon}
-                            className="h-6 w-6"
-                            alt="verIcon"
-                          />
+                      <div>
+                        <button className="eye-button pt-2 duration-300 pr-3">
+                          <svg
+                            fill="#5F6061"
+                            height="22px"
+                            width="22px"
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                            enable-background="new 0 0 512 512"
+                            stroke="#323842"
+                            className="hover:fill-current hover:text-gray-600 duration-300 hover:stroke-current hover:scale-125 transform-gpu"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              {" "}
+                              <path d="M0,226v32c128,192,384,192,512,0v-32C384,34,128,34,0,226z M256,370c-70.7,0-128-57.3-128-128s57.3-128,128-128 s128,57.3,128,128S326.7,370,256,370z M256,170c0-8.3,1.7-16.1,4.3-23.6c-1.5-0.1-2.8-0.4-4.3-0.4c-53,0-96,43-96,96s43,96,96,96 c53,0,96-43,96-96c0-1.5-0.4-2.8-0.4-4.3c-7.4,2.6-15.3,4.3-23.6,4.3C288.2,242,256,209.8,256,170z"></path>{" "}
+                            </g>
+                          </svg>
                         </button>
                       </div>
                     </td>
@@ -560,24 +585,32 @@ function Pasajes() {
                     </td>
 
                     <td class="pl-4">
-                      <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none font-Roboto font-bold tracking-wide">
+                      <button className="styled-btn font-bold">
                         Registrar
                       </button>
                     </td>
 
                     <td>
-                      <div class="relative pr-3 pt-2">
-                        <button
-                          class="focus:ring-2 rounded-md focus:outline-none"
-                          onclick="dropdownFunction(this)"
-                          role="button"
-                          aria-label="option"
-                        >
-                          <img
-                            src={verIcon}
-                            className="h-6 w-6"
-                            alt="verIcon"
-                          />
+                      <div>
+                        <button className="eye-button pt-2 duration-300 pr-3">
+                          <svg
+                            fill="#5F6061"
+                            height="22px"
+                            width="22px"
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                            enable-background="new 0 0 512 512"
+                            stroke="#323842"
+                            className="hover:fill-current hover:text-gray-600 duration-300 hover:stroke-current hover:scale-125 transform-gpu"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              {" "}
+                              <path d="M0,226v32c128,192,384,192,512,0v-32C384,34,128,34,0,226z M256,370c-70.7,0-128-57.3-128-128s57.3-128,128-128 s128,57.3,128,128S326.7,370,256,370z M256,170c0-8.3,1.7-16.1,4.3-23.6c-1.5-0.1-2.8-0.4-4.3-0.4c-53,0-96,43-96,96s43,96,96,96 c53,0,96-43,96-96c0-1.5-0.4-2.8-0.4-4.3c-7.4,2.6-15.3,4.3-23.6,4.3C288.2,242,256,209.8,256,170z"></path>{" "}
+                            </g>
+                          </svg>
                         </button>
                       </div>
                     </td>
