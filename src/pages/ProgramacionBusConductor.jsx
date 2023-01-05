@@ -1,11 +1,11 @@
 import React from "react";
 
-function Programacion() {
+function ProgramacionBusConductor() {
   return (
     <div className="bg-[#F3F1EF] w-[1450px] h-screen rounded-l-xl">
-      Programacion
+      Bus - Conductor
     </div>
   );
 }
 
-export default Programacion;
+export default ProgramacionBusConductor;

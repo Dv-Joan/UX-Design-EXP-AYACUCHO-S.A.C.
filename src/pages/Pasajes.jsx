@@ -4,18 +4,17 @@ import llenoIcon from "../assets/icons/lleno-icon.png";
 import llenandoIcon from "../assets/icons/llenando-icon.png";
 import placaIcon from "../assets/icons/placa-icon.png";
 import horaIcon from "../assets/icons/hora-icon.png";
-import verIcon from "../assets/icons/ver-icon.png";
-import "../styles/ExtraStyle.css";
+
+import "../styles/extra.css";
 
 function Pasajes() {
-  const [value, setValue] = useState({
+  const [date, setDate] = useState({
     startDate: null,
     endDate: null,
   });
 
-  const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue);
-    setValue(newValue);
+  const handleDateChange = (newDate) => {
+    setDate(newDate);
   };
   return (
     <div className="bg-[#F3F1EF] w-[1450px] h-screen rounded-l-xl">
@@ -39,15 +38,15 @@ function Pasajes() {
                     useRange={false}
                     primaryColor={"cyan"}
                     asSingle={true}
-                    value={value}
-                    onChange={handleValueChange}
+                    value={date}
+                    onChange={handleDateChange}
                     placeholder={"Seleccionar fecha"}
                   />
                 </div>
               </div>
             </div>
           </div>
-          <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 rounded-lg">
+          <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 rounded-lg drop-shadow-lg">
             <div class="mt-7 overflow-x-auto">
               <table class="w-full whitespace-nowrap">
                 <thead>
@@ -79,7 +78,7 @@ function Pasajes() {
                 <tbody>
                   <tr
                     tabindex="0"
-                    class="focus:outline-none h-16 border border-gray-100 rounded"
+                    class="focus:outline-none h-16 border border-gray-100 rounded hover:bg-gray-100"
                   >
                     <td>
                       <div class="ml-5">
@@ -216,7 +215,7 @@ function Pasajes() {
                   <tr class="h-3"></tr>
                   <tr
                     tabIndex="0"
-                    class="focus:outline-none  h-16 border border-gray-100 rounded"
+                    class="focus:outline-none  h-16 border border-gray-100 rounded hover:bg-gray-100"
                   >
                     <td>
                       <div class="ml-5">
@@ -347,7 +346,7 @@ function Pasajes() {
                   <tr class="h-3"></tr>
                   <tr
                     tabIndex="0"
-                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 rounded"
+                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 rounded hover:bg-gray-100"
                   >
                     <td>
                       <div class="ml-5">
@@ -479,7 +478,7 @@ function Pasajes() {
                   <tr class="h-3"></tr>
                   <tr
                     tabindex="0"
-                    class="focus:outline-none h-16 border border-gray-100 rounded"
+                    class="focus:outline-none h-16 border border-gray-100 rounded hover:bg-gray-100"
                   >
                     <td>
                       <div class="ml-5">
@@ -621,23 +620,6 @@ function Pasajes() {
             </div>
           </div>
         </div>
-        {/* <script src="./index.js"></script>
-        <style>.checkbox:checked + .check-icon {
-  display: flex;
-}
-</style>
-        <script>function dropdownFunction(element) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                let list = element.parentElement.parentElement.getElementsByClassName("dropdown-content")[0];
-                list.classList.add("target");
-                for (i = 0; i < dropdowns.length; i++) {
-                    if (!dropdowns[i].classList.contains("target")) {
-                        dropdowns[i].classList.add("hidden");
-                    }
-                }
-                list.classList.toggle("hidden");
-            }</script> */}
       </div>
     </div>
   );

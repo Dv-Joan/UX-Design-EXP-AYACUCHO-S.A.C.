@@ -3,8 +3,10 @@ import PanelControl from "./PanelControl";
 import Pasajes from "./Pasajes";
 import Contable from "./Contable";
 import Encomiendas from "./Encomiendas";
-import Programacion from "./Programacion";
+import ProgramacionViajes from "./ProgramacionViajes";
 import Administracion from "./Administracion";
+import ProgramacionComprobante from "./ProgramacionComprobante";
+import ProgramacionBusConductor from "./ProgramacionBusConductor";
 
 // Importacion de Assets
 import panelControl from "../assets/icons/paneldecontrol_icon.png";
@@ -84,20 +86,50 @@ function LandingPage() {
                 </button>
               </div>
             </Link>
-            <Link to="/programacion">
-              <div className="flex flex-col gap-2 mb-2 font-Literata font-bold text-[14px]">
-                <button className="px-6 py-3 hover:bg-[#F3F1EF] active:bg-[#b6b5b4] duration-200 rounded-lg">
+
+            <div className="flex flex-col gap-2 mb-2 font-Literata font-bold text-[14px]">
+              <div class="group inline-block">
+                <button class="px-6 py-3 rounded-lg  hover:bg-[#F3F1EF] flex items-center ">
                   <div className="flex gap-3">
                     <img
                       src={programacionIcon}
                       className="w-[20px] h-[22px]"
                       alt="home"
                     />
-                    <h3 className="text-center  ">Programación</h3>
+                    <span class="pr-1 font-semibold flex-1">Programacion</span>
                   </div>
+
+                  <span>
+                    <svg
+                      className="fill-current h-4 w-4 transform group-hover:-rotate-180 transition duration-150 ease-in-out"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </span>
                 </button>
+                <ul className="bg-white rounded-lg mt-0.5 transform border scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top">
+                  <Link to="/programacion-viajes">
+                    <li class="rounded-md pl-5 pr-[75px] py-3 hover:bg-[#F3F1EF] active:bg-[#b6b5b4] duration-200">
+                      Viajes
+                    </li>
+                  </Link>
+
+                  <Link to="/programacion-bus-conductor">
+                    <li class="rounded-md pl-5 pr-[75px] py-3 hover:bg-[#F3F1EF] active:bg-[#b6b5b4] duration-200">
+                      Bus - Conductor
+                    </li>
+                  </Link>
+                  <Link to="/programacion-comprobantes">
+                    <li class="rounded-md pl-5 pr-[75px] py-3 hover:bg-[#F3F1EF] active:bg-[#b6b5b4] duration-200">
+                      Comprobantes
+                    </li>
+                  </Link>
+                </ul>
               </div>
-            </Link>
+            </div>
+
             <Link to="/encomiendas">
               <div className="flex flex-col gap-2 mb-2 font-Literata font-bold text-[14px]">
                 <button className="px-6 py-3 hover:bg-[#F3F1EF] active:bg-[#b6b5b4] duration-200 rounded-lg">
@@ -133,7 +165,15 @@ function LandingPage() {
           <Route path="/pasajes" element={<Pasajes />} />
           <Route path="/contable" element={<Contable />} />
           <Route path="/encomiendas" element={<Encomiendas />} />
-          <Route path="/programacion" element={<Programacion />} />
+          <Route path="/programacion-viajes" element={<ProgramacionViajes />} />
+          <Route
+            path="/programacion-bus-conductor"
+            element={<ProgramacionBusConductor />}
+          />
+          <Route
+            path="/programacion-comprobantes"
+            element={<ProgramacionComprobante />}
+          />
           <Route path="/administracion" element={<Administracion />} />
         </Routes>
       </div>
