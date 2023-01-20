@@ -10,10 +10,10 @@ function PanelControl() {
         <Link to="/pasajes">
           <Pasajes_Card />
         </Link>
-        <Link to="/programacion">
+        <Link to="/programacion-viajes">
           <Viajes_Card />
         </Link>
-        <Link to="/programacion">
+        <Link to="/programacion-comprobantes">
           <Boletos_Card />
         </Link>
       </div>
