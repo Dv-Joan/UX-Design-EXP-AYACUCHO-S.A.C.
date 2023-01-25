@@ -1,4 +1,6 @@
 import logo from "./../assets/logo.png";
+import LandingPage from "./LandingPage";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -50,14 +52,15 @@ function Login() {
                   Recordar contraseña
                 </label>
               </div>
-              <button className="bg-[#191818] mt-10 hover:bg-[#141313] text-white py-3 px-4">
-                Ingresar
-              </button>
+              <Link to="/">
+                <button className="bg-[#191818] mt-10 hover:bg-[#141313] text-white py-3 px-4">
+                  Ingresar
+                </button>
+              </Link>
             </form>
           </div>
         </div>
       </div>
-      <div className="flex justify-center"></div>
     </div>
   );
 }

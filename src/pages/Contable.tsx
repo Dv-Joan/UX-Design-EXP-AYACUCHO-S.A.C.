@@ -1,11 +1,13 @@
-import { DatePicker, Space, Input } from "antd";
+import { DatePicker, Space, Input, Table, Card } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
 import { SearchOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
-import { Button, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import ingresoIcon from "./../assets/icons/ingresoIcon.png";
+import egresoIcon from "./../assets/icons/egresoIcon.png";
+import recaudadoIcon from "./../assets/icons/recaudadoIcon.png";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 
 const onChange = (
@@ -23,11 +25,11 @@ interface DataType {
   key: React.Key;
   destino: string;
   serie: string;
-  numero: string;
+  numero: number;
   asiento: string;
   viaje: string;
   monto: string;
-  cliente: string;
+  clientedni: number;
 }
 
 const columns: ColumnsType<DataType> = [
@@ -50,8 +52,8 @@ const columns: ColumnsType<DataType> = [
   },
   { title: "Monto", dataIndex: "monto" },
   {
-    title: "Cliente",
-    dataIndex: "cliente",
+    title: "Cliente DNI",
+    dataIndex: "clientedni",
   },
 ];
 
@@ -60,12 +62,12 @@ for (let i = 0; i < 46; i++) {
   data.push({
     key: i,
     destino: `Huancayo ${i}`,
-    serie: `B003 ${i}`,
-    numero: `3370 ${i}`,
-    asiento: `8 ${i}`,
-    viaje: `1531 ${i}`,
-    monto: `30 ${i}`,
-    cliente: `759946700 ${i}`,
+    serie: `B003`,
+    numero: 3370 + i,
+    asiento: `${i + 7}`,
+    viaje: `1531${i}`,
+    monto: `s/. 30.00`,
+    clientedni: 75994622 + i,
   });
 }
 
@@ -74,16 +76,6 @@ const disabledDate: RangePickerProps["disabledDate"] = (current) => {
 };
 function Contable() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  const start = () => {
-    setLoading(true);
-    // ajax request after empty completing
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
-  };
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
@@ -94,18 +86,114 @@ function Contable() {
     selectedRowKeys,
     onChange: onSelectChange,
   };
-  const hasSelected = selectedRowKeys.length > 0;
   return (
     <div className="bg-[#F3F1EF] w-[1450px] h-auto rounded-l-xl">
       <div>
         <div>
-          <p className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl drop-shadow-xl font-bold leading-normal text-gray-800 font-Nunito pt-7 pl-12 ">
+          <p className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 font-Nunito pt-7 pl-12 mt-4 ">
             Bienvenido de nuevo, Julio
           </p>
+          <div className="flex gap-3 ml-12 mt-10">
+            <button className="rounded-full  border border-zinc-500 font-Roboto px-5 text-slate-600 hover:bg-zinc-300 active:bg-zinc-400 ease-in-out duration-300 py-1 text-sm">
+              Horario 9:30 PM
+            </button>
+            <button className="rounded-full  border border-zinc-500 font-Roboto px-5  bg-zinc-300 active:bg-zinc-400 ease-in-out text-zinc-600 duration-300 py-1 text-sm">
+              Horario 10:00 PM
+            </button>
+            <button className="rounded-full  border border-zinc-500 font-Roboto px-5 text-slate-600 hover:bg-zinc-300 active:bg-zinc-400 ease-in-out duration-300 py-1 text-sm">
+              Horario 9:30 AM
+            </button>
+            <button className="rounded-full  border border-zinc-500 font-Roboto px-5 text-slate-600 hover:bg-zinc-300 active:bg-zinc-400 ease-in-out duration-300 py-1 text-sm">
+              Horario 12:30 PM
+            </button>
+            <button className="rounded-full  border border-zinc-500 font-Roboto px-5 text-slate-600 hover:bg-zinc-300 active:bg-zinc-400 ease-in-out duration-300 py-1 text-sm">
+              Horario 8:00 PM
+            </button>
+          </div>
+          <p className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-xl font-bold leading-normal text-gray-800 font-Nunito pt-7 pl-12 ">
+            Overview
+          </p>
+          <div className="flex gap-11 ml-12 mt-5">
+            <Card
+              style={{ width: 300 }}
+              className="shadow-lg duration-200 hover:scale-105 cursor-default"
+            >
+              <p className="text-sm text-slate-400 font-semibold">
+                Balance Total
+              </p>
+              <p className="text-2xl font-bold pt-2 font-Roboto">S./ 750.00</p>
+              <div className="flex gap-2">
+                <img
+                  src={ingresoIcon}
+                  alt="ingresoIcon"
+                  className="w-[22px] h-6 mt-[17px]"
+                />
+                <p className="text-slate-400 font-Roboto pt-5">
+                  75% total bruto
+                </p>
+              </div>
+            </Card>
+            <Card
+              style={{ width: 300 }}
+              className="shadow-lg duration-200 hover:scale-105 cursor-default"
+            >
+              <p className="text-sm text-slate-400 font-semibold">Comision</p>
+              <p className="text-2xl font-bold pt-2 font-Roboto">S./ 168.00</p>
+              <div className="flex gap-2">
+                <img
+                  src={egresoIcon}
+                  alt="ingresoIcon"
+                  className="w-[22px] h-6 mt-[17px]"
+                />
+                <p className="text-slate-400 font-Roboto pt-5">
+                  15% total bruto | encomiendas
+                </p>
+              </div>
+            </Card>
+            <Card
+              style={{ width: 300 }}
+              className="shadow-lg duration-200 hover:scale-105 cursor-default"
+            >
+              <p className="text-sm text-slate-400 font-semibold">
+                Encomiendas
+              </p>
+              <p className="text-2xl font-bold pt-2 font-Roboto">S./ 80.00</p>
+              <div className="flex gap-2">
+                <img
+                  src={ingresoIcon}
+                  alt="ingresoIcon"
+                  className="w-[22px] h-6 mt-[17px]"
+                />
+                <p className="text-slate-400 font-Roboto pt-5">
+                  100% encomiendas registradas
+                </p>
+              </div>
+            </Card>
+            <Card
+              style={{ width: 300 }}
+              className="shadow-lg duration-200 hover:scale-105 cursor-default"
+            >
+              <p className="text-sm text-slate-400 font-semibold">
+                Total Bruto
+              </p>
+              <p className="text-2xl font-bold pt-2 font-Roboto">S./ 1000.00</p>
+              <div className="flex gap-2">
+                <img
+                  src={recaudadoIcon}
+                  alt="ingresoIcon"
+                  className="w-[22px] h-6 mt-[17px]"
+                />
+                <p className="text-slate-400 font-Roboto pt-5">
+                  100% boletos vendidos
+                </p>
+              </div>
+            </Card>
+          </div>
+
           <p className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-xl font-bold leading-normal text-gray-800 font-Nunito pt-7 pl-12 ">
             Historial de Registros
           </p>
-          <div className=" my-4 ml-12 flex  gap-3">
+          <div className=" my-4 ml-12 flex gap-3">
             <Space direction="vertical">
               <Input
                 placeholder="Buscar"
@@ -113,33 +201,17 @@ function Contable() {
                 suffix={<SearchOutlined className="cursor-pointer" />}
               />
             </Space>
-            <div className="">
-              <Space direction="vertical" size={12}>
-                <DatePicker
-                  className="cursor-pointer h-[35px] w-56 "
-                  onChange={onChange}
-                  onOk={onOk}
-                  placeholder="Selecciona una fecha"
-                />
-              </Space>
-            </div>
-          </div>
-          <div style={{ marginBottom: 16 }}>
-            <Button
-              type="primary"
-              onClick={start}
-              disabled={!hasSelected}
-              loading={loading}
-              className="ml-12"
-            >
-              Reload
-            </Button>
-            <span style={{ marginLeft: 8 }}>
-              {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
-            </span>
+            <Space direction="vertical" size={12}>
+              <DatePicker
+                className="cursor-pointer h-[35px] w-56"
+                onChange={onChange}
+                onOk={onOk}
+                placeholder="Selecciona una fecha"
+              />
+            </Space>
           </div>
           <Table
-            className="mx-12"
+            className=" mx-12"
             rowSelection={rowSelection}
             columns={columns}
             dataSource={data}

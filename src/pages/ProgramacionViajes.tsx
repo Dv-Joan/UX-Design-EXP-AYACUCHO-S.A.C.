@@ -1,40 +1,40 @@
 import React, { useState } from "react";
-// import { Space, TimePicker, TimePickerProps } from "antd";
-import Datepicker from "react-tailwindcss-datepicker";
+import { Space, DatePicker, TimePicker } from "antd";
+import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
+import type { Dayjs } from "dayjs";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import placaIcon from "../assets/icons/placa-icon.png";
 import horaIcon from "../assets/icons/hora-icon.png";
 import "../styles/extra.css";
 
-/* const PickerWithType = ({
-  onChange,
-}: {
-  type: 'time',
-  onChange: TimePickerProps["onChange"]}) => {
-  return <TimePicker onChange={onChange} placeholder="HH : MM : SS" />;
-}; */
-function ProgramacionViajes() {
-  const [date, setDate] = useState({
-    startDate: null,
-    endDate: null,
-  });
+const format = "HH:mm";
 
-  const handleDateChange = (newDate) => {
-    setDate(newDate);
-  };
+const onTimeChange = (time: Dayjs, timeString: string) => {
+  console.log("Tiempo seleccionado: ", timeString, time);
+};
+const onDateChange = (
+  value: DatePickerProps["value"],
+  dateString: [string, string] | string
+) => {
+  console.log("Fecha seleccionada: ", dateString);
+};
+const onOk = (value: DatePickerProps["value"]) => {
+  console.log("onOk: ", value);
+};
+
+function ProgramacionViajes() {
   return (
     <div className="bg-[#F3F1EF] w-[1450px] h-auto min-h-screen rounded-l-xl">
       <div className="mx-10 my-5">
-        <div class="sm:px-6 w-full">
-          <p
-            tabIndex="0"
-            class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl drop-shadow-xl font-bold leading-normal text-gray-800 font-Nunito py-7 pl-5 "
-          >
+        <div className="sm:px-6 w-full">
+          <p className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl drop-shadow-xl font-bold leading-normal text-gray-800 font-Nunito py-7 pl-5 ">
             PROGRAMAR VIAJE
           </p>
 
-          <div class="bg-white py-2 mb-5 pb-5 px-4 pl-16  rounded-lg drop-shadow-lg font-Roboto">
+          <div className="bg-white py-2 mb-5 pb-5 px-4 pl-16  rounded-lg drop-shadow-lg font-Roboto">
             <form action="">
-              <div class="mt-2 overflow-x-auto flex gap-7">
+              <div className="mt-2 overflow-x-auto flex gap-7">
                 <div className="my-2">
                   <label
                     htmlFor="rutaProgramacion"
@@ -76,130 +76,93 @@ function ProgramacionViajes() {
                   <label className="font-bold text-[16px]" htmlFor="datepicker">
                     Fecha :{" "}
                   </label>
-                  <Datepicker
-                    name="datepicker"
-                    inputClassName={
-                      "w-[200px] h-[43px] rounded-lg border border-gray-300 cursor-pointer"
-                    }
-                    useRange={false}
-                    primaryColor={"cyan"}
-                    asSingle={true}
-                    value={date}
-                    onChange={handleDateChange}
-                    placeholder={"Seleccionar fecha"}
-                  />
+                  <br />
+                  <Space direction="vertical" size={12}>
+                    <DatePicker
+                      className="cursor-pointer h-[45px] w-56 bg-[#F3F1EF] border border-[#E9E9E9]"
+                      onChange={onDateChange}
+                      onOk={onOk}
+                      placeholder="Selecciona una fecha"
+                    />
+                  </Space>
                 </div>
                 <div className="">
                   <p className="font-semibold pt-3">Hora :</p>
-                  <div class=" pl-4 w-28 h-[43px] mt-[4px]   bg-[#F3F1EF] border border-[#E9E9E9] font-Roboto text-[16px] rounded-lg ">
-                    <select
-                      name="horaProgramacion"
-                      class="bg-transparent  appearance-none cursor-pointer pt-2"
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                      <option value="12">12</option>
-                    </select>
-                    <span>:</span>
-                    <select
-                      name="minutes"
-                      class="bg-transparent  appearance-none outline-none mr-3 cursor-pointer"
-                    >
-                      <option value="0">00</option>
-                      <option value="30">30</option>
-                      <option value="15">15</option>
-                      <option value="45">45</option>
-                    </select>
-                    <select
-                      name="ampm"
-                      class="bg-transparent  appearance-none outline-none cursor-pointer"
-                    >
-                      <option value="am">AM</option>
-                      <option value="pm">PM</option>
-                    </select>
-                  </div>
+                  <TimePicker
+                    format={format}
+                    // onChange={onTimeChange}
+                    className="cursor-pointer h-[45px] w-48 bg-[#F3F1EF] border border-[#E9E9E9]"
+                    defaultOpenValue={dayjs("07:00", format)}
+                    minuteStep={15}
+                    placeholder="Selecciona una hora"
+                  ></TimePicker>
                 </div>
 
                 <div className="">
-                  <button className="btn-crear mt-10 ml-24 text-sm">
+                  <button className="btn-crear mt-10 ml-7 text-sm">
                     Crear
                   </button>
                 </div>
               </div>
             </form>
           </div>
-          <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 rounded-lg drop-shadow-lg">
-            <div class="mt-7 overflow-x-auto">
-              <table class="w-full whitespace-nowrap">
+          <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 rounded-lg drop-shadow-lg">
+            <div className="mt-7 overflow-x-auto">
+              <table className="w-full whitespace-nowrap">
                 <thead>
-                  <tr
-                    tabindex="0"
-                    class="focus:outline-none h-16 border border-gray-100 rounded"
-                  >
-                    <th class="pl-12 text-sm font-medium leading-none text-gray-500">
+                  <tr className="focus:outline-none h-16 border border-gray-100 rounded">
+                    <th className="pl-12 text-sm font-medium leading-none text-gray-500">
                       Viaje ID
                     </th>
-                    <th class="pr-16 text-sm font-medium leading-none text-gray-500">
+                    <th className="pr-16 text-sm font-medium leading-none text-gray-500">
                       Ruta
                     </th>
-                    <th class="text-sm font-medium leading-none text-gray-500">
+                    <th className="text-sm font-medium leading-none text-gray-500">
                       Bus
                     </th>
-                    <th class="text-sm font-medium leading-none text-gray-500">
+                    <th className="text-sm font-medium leading-none text-gray-500">
                       Fecha
                     </th>
-                    <th class=" text-sm font-medium leading-none text-gray-500">
+                    <th className=" text-sm font-medium leading-none text-gray-500">
                       Hora
                     </th>
-                    <th class=" text-sm font-medium leading-none text-gray-500">
+                    <th className=" text-sm font-medium leading-none text-gray-500">
                       Estado
                     </th>
-                    <th class=" text-sm font-medium leading-none text-gray-500">
+                    <th className=" text-sm font-medium leading-none text-gray-500">
                       Acción
                     </th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr
-                    tabIndex="0"
-                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded"
-                  >
+                  <tr className="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded">
                     <td>
-                      <div class="ml-12">
+                      <div className="ml-12">
                         <span className="text-gray-600 text-sm">1474</span>
                       </div>
                     </td>
-                    <td class="w-96">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="w-96">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Huancayo - Ayacucho
                         </p>
                       </div>
                     </td>
-                    <td class="pr-10">
-                      <div class="flex items-center">
+                    <td className="pr-10">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           C2V-12T
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -250,19 +213,19 @@ function ProgramacionViajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           06-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-10 w-44">
-                      <div class=" flex items-center">
+                    <td className="pl-10 w-44">
+                      <div className=" flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           08:30
                           <span className="bg-cyan-500 opacity-70 ml-2 px-1.5 pb-0.5 rounded-md text-white font-bold tracking-wide ">
                             am
@@ -327,36 +290,33 @@ function ProgramacionViajes() {
                     </td>
                   </tr>
                   <tr className="h-3"></tr>
-                  <tr
-                    tabIndex="0"
-                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded"
-                  >
+                  <tr className="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded">
                     <td>
-                      <div class="ml-12">
+                      <div className="ml-12">
                         <span className="text-gray-600 text-sm">1474</span>
                       </div>
                     </td>
-                    <td class="w-96">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="w-96">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Huancayo - Ayacucho
                         </p>
                       </div>
                     </td>
-                    <td class="pr-10">
-                      <div class="flex items-center">
+                    <td className="pr-10">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           C2V-12T
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -407,19 +367,19 @@ function ProgramacionViajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           06-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-10 w-44">
-                      <div class=" flex items-center">
+                    <td className="pl-10 w-44">
+                      <div className=" flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           08:30
                           <span className="bg-cyan-500 opacity-70 ml-2 px-1.5 pb-0.5 rounded-md text-white font-bold tracking-wide ">
                             am
@@ -483,37 +443,34 @@ function ProgramacionViajes() {
                       </div>
                     </td>
                   </tr>
-                  <tr class="h-3"></tr>
-                  <tr
-                    tabIndex="0"
-                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded"
-                  >
+                  <tr className="h-3"></tr>
+                  <tr className="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded">
                     <td>
-                      <div class="ml-12">
+                      <div className="ml-12">
                         <span className="text-gray-600 text-sm">1480</span>
                       </div>
                     </td>
-                    <td class="w-96">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="w-96">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Ayacucho-Huancayo
                         </p>
                       </div>
                     </td>
-                    <td class="pr-10">
-                      <div class="flex items-center">
+                    <td className="pr-10">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           B8G-1TY
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -564,19 +521,19 @@ function ProgramacionViajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           06-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-10 w-44">
-                      <div class=" flex items-center">
+                    <td className="pl-10 w-44">
+                      <div className=" flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           09:30
                           <span className="bg-green-500 opacity-70 ml-2 px-1.5 pb-0.5 rounded-md text-white font-bold tracking-wide ">
                             am
@@ -640,37 +597,34 @@ function ProgramacionViajes() {
                       </div>
                     </td>
                   </tr>
-                  <tr class="h-3"></tr>
-                  <tr
-                    tabIndex="0"
-                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded"
-                  >
+                  <tr className="h-3"></tr>
+                  <tr className="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded">
                     <td>
-                      <div class="ml-12">
+                      <div className="ml-12">
                         <span className="text-gray-600 text-sm">1474</span>
                       </div>
                     </td>
-                    <td class="w-96">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="w-96">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Huancayo - Ayacucho
                         </p>
                       </div>
                     </td>
-                    <td class="pr-10">
-                      <div class="flex items-center">
+                    <td className="pr-10">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           C2V-12T
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -721,19 +675,19 @@ function ProgramacionViajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           06-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-10 w-44">
-                      <div class=" flex items-center">
+                    <td className="pl-10 w-44">
+                      <div className=" flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           08:30
                           <span className="bg-cyan-500 opacity-70 ml-2 px-1.5 pb-0.5 rounded-md text-white font-bold tracking-wide ">
                             am
@@ -798,37 +752,34 @@ function ProgramacionViajes() {
                     </td>
                   </tr>
 
-                  <tr class="h-3"></tr>
-                  <tr
-                    tabIndex="0"
-                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded"
-                  >
+                  <tr className="h-3"></tr>
+                  <tr className="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded">
                     <td>
-                      <div class="ml-12">
+                      <div className="ml-12">
                         <span className="text-gray-600 text-sm">1478</span>
                       </div>
                     </td>
-                    <td class="w-96">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="w-96">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Huancayo - Ayacucho
                         </p>
                       </div>
                     </td>
-                    <td class="pr-10">
-                      <div class="flex items-center">
+                    <td className="pr-10">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           B9Z-14C
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -879,19 +830,19 @@ function ProgramacionViajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           06-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-10 w-44">
-                      <div class=" flex items-center">
+                    <td className="pl-10 w-44">
+                      <div className=" flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           09:30
                           <span className="bg-green-500 opacity-70 ml-2 px-1.5 pb-0.5 rounded-md text-white font-bold tracking-wide ">
                             am
@@ -956,37 +907,34 @@ function ProgramacionViajes() {
                     </td>
                   </tr>
 
-                  <tr class="h-3"></tr>
-                  <tr
-                    tabIndex="0"
-                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded"
-                  >
+                  <tr className="h-3"></tr>
+                  <tr className="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 hover:bg-gray-100 rounded">
                     <td>
-                      <div class="ml-12">
+                      <div className="ml-12">
                         <span className="text-gray-600 text-sm">1474</span>
                       </div>
                     </td>
-                    <td class="w-96">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="w-96">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Huancayo - Ayacucho
                         </p>
                       </div>
                     </td>
-                    <td class="pr-10">
-                      <div class="flex items-center">
+                    <td className="pr-10">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           C2V-12T
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -1037,19 +985,19 @@ function ProgramacionViajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           06-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-10 w-44">
-                      <div class=" flex items-center">
+                    <td className="pl-10 w-44">
+                      <div className=" flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           08:30
                           <span className="bg-cyan-500 opacity-70 ml-2 px-1.5 pb-0.5 rounded-md text-white font-bold tracking-wide ">
                             am
@@ -1113,7 +1061,7 @@ function ProgramacionViajes() {
                       </div>
                     </td>
                   </tr>
-                  <tr class="h-3">
+                  <tr className="h-3">
                     <td className="h-3"></td>
                     <td className="h-3"></td>
                     <td className="h-3"></td>
@@ -1121,18 +1069,18 @@ function ProgramacionViajes() {
 
                     <td className="h-3" colSpan={5}>
                       <div className=" mt-5 bg-white py-3">
-                        <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                        <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                           <div>
                             <nav
-                              class="isolate inline-flex pl-64 rounded-md shadow-sm"
+                              className="isolate inline-flex pl-64 rounded-md shadow-sm"
                               aria-label="Pagination"
                             >
                               <a
                                 href="#"
-                                class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+                                className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
                               >
                                 <svg
-                                  class="h-5 w-5"
+                                  className="h-5 w-5"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 0 20 20"
                                   fill="currentColor"
@@ -1149,49 +1097,49 @@ function ProgramacionViajes() {
                               <a
                                 href="#"
                                 aria-current="page"
-                                class="relative z-10 inline-flex items-center border border-indigo-500 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-600 focus:z-20"
+                                className="relative z-10 inline-flex items-center border border-indigo-500 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-600 focus:z-20"
                               >
                                 1
                               </a>
                               <a
                                 href="#"
-                                class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+                                className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
                               >
                                 2
                               </a>
                               <a
                                 href="#"
-                                class="relative hidden items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 md:inline-flex"
+                                className="relative hidden items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 md:inline-flex"
                               >
                                 3
                               </a>
-                              <span class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700">
+                              <span className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700">
                                 ...
                               </span>
                               <a
                                 href="#"
-                                class="relative hidden items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 md:inline-flex"
+                                className="relative hidden items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 md:inline-flex"
                               >
                                 8
                               </a>
                               <a
                                 href="#"
-                                class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+                                className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
                               >
                                 9
                               </a>
                               <a
                                 href="#"
-                                class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+                                className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
                               >
                                 10
                               </a>
                               <a
                                 href="#"
-                                class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+                                className="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
                               >
                                 <svg
-                                  class="h-5 w-5"
+                                  className="h-5 w-5"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 0 20 20"
                                   fill="currentColor"

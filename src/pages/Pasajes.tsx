@@ -1,11 +1,23 @@
 import React, { useState } from "react";
-import Datepicker from "react-tailwindcss-datepicker";
+import { Space, DatePicker } from "antd";
+import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 import llenoIcon from "../assets/icons/lleno-icon.png";
 import llenandoIcon from "../assets/icons/llenando-icon.png";
 import placaIcon from "../assets/icons/placa-icon.png";
 import horaIcon from "../assets/icons/hora-icon.png";
 
 import "../styles/extra.css";
+
+const onChange = (
+  value: DatePickerProps["value"],
+  dateString: [string, string] | string
+) => {
+  console.log("Fecha seleccionada: ", dateString);
+};
+
+const onOk = (value: DatePickerProps["value"]) => {
+  console.log("onOk: ", value);
+};
 
 function Pasajes() {
   const [date, setDate] = useState({
@@ -19,75 +31,61 @@ function Pasajes() {
   return (
     <div className="bg-[#F3F1EF] w-[1450px] h-screen rounded-l-xl">
       <div className="mx-10 my-5">
-        <div class="sm:px-6 w-full">
-          <div class="px-4 md:px-10 py-4 md:py-7">
-            <div class="flex items-center justify-between">
-              <p
-                tabIndex="0"
-                class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl drop-shadow-xl font-bold leading-normal text-gray-800 font-Nunito"
-              >
+        <div className="sm:px-6 w-full">
+          <div className="px-4 md:px-10 py-4 md:py-7">
+            <div className="flex items-center justify-between">
+              <p className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 font-Nunito">
                 VIAJES DISPONIBLES
               </p>
-              <div class="py-3 px-4 flex gap-5 text-sm font-medium text-gray-600">
-                <p className="font-bold text-[16px] mt-2">Fecha : </p>
-                <div className="font-Roboto">
-                  <Datepicker
-                    inputClassName={
-                      "w-[200px] h-[35px] rounded-lg bg-gray-200 border border-gray-300 cursor-pointer"
-                    }
-                    useRange={false}
-                    primaryColor={"cyan"}
-                    asSingle={true}
-                    value={date}
-                    onChange={handleDateChange}
-                    placeholder={"Seleccionar fecha"}
+              <div className="py-3 px-4 flex gap-5 text-sm font-medium text-gray-600">
+                <p className="font-semibold text-[16px] mt-[9px]">Fecha : </p>
+                <Space direction="vertical" size={12}>
+                  <DatePicker
+                    className="cursor-pointer h-[40px] w-56"
+                    onChange={onChange}
+                    onOk={onOk}
+                    placeholder="Selecciona una fecha"
                   />
-                </div>
+                </Space>
               </div>
             </div>
           </div>
-          <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 rounded-lg drop-shadow-lg">
-            <div class="mt-7 overflow-x-auto">
-              <table class="w-full whitespace-nowrap">
+          <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 rounded-lg drop-shadow-lg">
+            <div className="mt-7 overflow-x-auto">
+              <table className="w-full whitespace-nowrap">
                 <thead>
-                  <tr
-                    tabindex="0"
-                    class="focus:outline-none h-16 border border-gray-100 rounded"
-                  >
-                    <th class="pl-3 text-sm font-medium leading-none text-gray-500">
+                  <tr className="focus:outline-none h-16 border border-gray-100 rounded">
+                    <th className="pl-3 text-sm font-medium leading-none text-gray-500">
                       Viaje ID
                     </th>
-                    <th class="pr-48 text-sm font-medium leading-none text-gray-500">
+                    <th className="pr-48 text-sm font-medium leading-none text-gray-500">
                       Ruta
                     </th>
-                    <th class=" text-sm font-medium leading-none text-gray-500">
+                    <th className=" text-sm font-medium leading-none text-gray-500">
                       Bus
                     </th>
-                    <th class="pr-20 text-sm font-medium leading-none text-gray-500">
+                    <th className="pr-20 text-sm font-medium leading-none text-gray-500">
                       Fecha
                     </th>
-                    <th class="pr-20 text-sm font-medium leading-none text-gray-500">
+                    <th className="pr-20 text-sm font-medium leading-none text-gray-500">
                       Hora
                     </th>
-                    <th class="pl-16 text-sm font-medium leading-none text-gray-500">
+                    <th className="pl-16 text-sm font-medium leading-none text-gray-500">
                       Acción
                     </th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr
-                    tabindex="0"
-                    class="focus:outline-none h-16 border border-gray-100 rounded hover:bg-gray-100"
-                  >
+                  <tr className="focus:outline-none h-16 border border-gray-100 rounded hover:bg-gray-100">
                     <td>
-                      <div class="ml-5">
+                      <div className="ml-5">
                         <span className="text-gray-600 text-sm">1475</span>
                       </div>
                     </td>
-                    <td class="">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Huancayo - Ayacucho
                         </p>
                         <img
@@ -97,20 +95,20 @@ function Pasajes() {
                         />
                       </div>
                     </td>
-                    <td class="pl-20">
-                      <div class="flex items-center">
+                    <td className="pl-20">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           ABG-14R
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -161,19 +159,19 @@ function Pasajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           05-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           08:00{" "}
                           <span className="bg-cyan-500 opacity-70 px-1.5 ml-1 pb-0.5 rounded-md text-white font-bold tracking-wide ">
                             pm
@@ -182,7 +180,7 @@ function Pasajes() {
                       </div>
                     </td>
 
-                    <td class="pl-4">
+                    <td className="pl-4">
                       <button className="styled-btn font-bold">
                         Registrar
                       </button>
@@ -212,37 +210,34 @@ function Pasajes() {
                       </div>
                     </td>
                   </tr>
-                  <tr class="h-3"></tr>
-                  <tr
-                    tabIndex="0"
-                    class="focus:outline-none  h-16 border border-gray-100 rounded hover:bg-gray-100"
-                  >
+                  <tr className="h-3"></tr>
+                  <tr className="focus:outline-none  h-16 border border-gray-100 rounded hover:bg-gray-100">
                     <td>
-                      <div class="ml-5">
+                      <div className="ml-5">
                         <span className="text-gray-600 text-sm">1479</span>
                       </div>
                     </td>
-                    <td class="focus:text-indigo-600 ">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="focus:text-indigo-600 ">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Ayacucho - Huancayo
                         </p>
                       </div>
                     </td>
-                    <td class="pl-20">
-                      <div class="flex items-center">
+                    <td className="pl-20">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           CV2-B9Z
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -293,19 +288,19 @@ function Pasajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           04-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           08:00{" "}
                           <span className="bg-cyan-500 opacity-70 px-1.5 pb-0.5 ml-1 rounded-md text-white font-bold tracking-wide ">
                             pm
@@ -313,7 +308,7 @@ function Pasajes() {
                         </p>
                       </div>
                     </td>
-                    <td class="pl-4">
+                    <td className="pl-4">
                       <button className="styled-btn font-bold">
                         Registrar
                       </button>
@@ -343,37 +338,34 @@ function Pasajes() {
                       </div>
                     </td>
                   </tr>
-                  <tr class="h-3"></tr>
-                  <tr
-                    tabIndex="0"
-                    class="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 rounded hover:bg-gray-100"
-                  >
+                  <tr className="h-3"></tr>
+                  <tr className="focus:outline-none focus:text-indigo-600 h-16 border border-gray-100 rounded hover:bg-gray-100">
                     <td>
-                      <div class="ml-5">
+                      <div className="ml-5">
                         <span className="text-gray-600 text-sm">1480</span>
                       </div>
                     </td>
-                    <td class="">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Huancayo - Ayacucho
                         </p>
                       </div>
                     </td>
-                    <td class="pl-20">
-                      <div class="flex items-center">
+                    <td className="pl-20">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           B8G-1TY
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -424,19 +416,19 @@ function Pasajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           06-01-2021
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           09:30
                           <span className="bg-green-500 opacity-70 ml-2 px-1.5 pb-0.5 rounded-md text-white font-bold tracking-wide ">
                             am
@@ -445,7 +437,7 @@ function Pasajes() {
                       </div>
                     </td>
 
-                    <td class="pl-4">
+                    <td className="pl-4">
                       <button className="styled-btn font-bold">
                         Registrar
                       </button>
@@ -475,19 +467,16 @@ function Pasajes() {
                       </div>
                     </td>
                   </tr>
-                  <tr class="h-3"></tr>
-                  <tr
-                    tabindex="0"
-                    class="focus:outline-none h-16 border border-gray-100 rounded hover:bg-gray-100"
-                  >
+                  <tr className="h-3"></tr>
+                  <tr className="focus:outline-none h-16 border border-gray-100 rounded hover:bg-gray-100">
                     <td>
-                      <div class="ml-5">
+                      <div className="ml-5">
                         <span className="text-gray-600 text-sm">1484</span>
                       </div>
                     </td>
-                    <td class="">
-                      <div class="flex items-center pl-10">
-                        <p class="text-base font-medium leading-none text-gray-700 mr-2">
+                    <td className="">
+                      <div className="flex items-center pl-10">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">
                           Ayacucho - Huancayo
                         </p>
                         <img
@@ -497,20 +486,20 @@ function Pasajes() {
                         />
                       </div>
                     </td>
-                    <td class="pl-20">
-                      <div class="flex items-center">
+                    <td className="pl-20">
+                      <div className="flex items-center">
                         <img
                           src={placaIcon}
                           className="w-[20px] h-[20px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           B9Y-15Q
                         </p>
                       </div>
                     </td>
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -561,20 +550,20 @@ function Pasajes() {
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           05-01-2021
                         </p>
                       </div>
                     </td>
 
-                    <td class="pl-5">
-                      <div class="flex items-center">
+                    <td className="pl-5">
+                      <div className="flex items-center">
                         <img
                           src={horaIcon}
                           className="w-[16px] h-[16px] mt-0.5"
                           alt=""
                         />
-                        <p class="text-sm leading-none text-gray-600 ml-2">
+                        <p className="text-sm leading-none text-gray-600 ml-2">
                           08:00{" "}
                           <span className="bg-cyan-500 opacity-70 px-1.5 pb-0.5 ml-1 rounded-md text-white font-bold tracking-wide ">
                             pm
@@ -583,7 +572,7 @@ function Pasajes() {
                       </div>
                     </td>
 
-                    <td class="pl-4">
+                    <td className="pl-4">
                       <button className="styled-btn font-bold">
                         Registrar
                       </button>
@@ -614,7 +603,7 @@ function Pasajes() {
                       </div>
                     </td>
                   </tr>
-                  <tr class="h-3"></tr>
+                  <tr className="h-3"></tr>
                 </tbody>
               </table>
             </div>
