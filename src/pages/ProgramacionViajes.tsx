@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Space, DatePicker, TimePicker } from "antd";
+import { Space, DatePicker, Select, TimePicker } from "antd";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
@@ -9,6 +9,15 @@ import horaIcon from "../assets/icons/hora-icon.png";
 import "../styles/extra.css";
 
 const format = "HH:mm";
+
+const handleRuta = (value: { value: string; label: React.ReactNode }) => {
+  console.log(value);
+};
+const handleBus = (value: { value: string; label: React.ReactNode }) => {
+  console.log(value);
+};
+
+const buses = ["BG8-145", "BYZ-148", "BG8-145", "BYZ-148"];
 
 const onTimeChange = (time: Dayjs, timeString: string) => {
   console.log("Tiempo seleccionado: ", timeString, time);
@@ -36,70 +45,83 @@ function ProgramacionViajes() {
             <form action="">
               <div className="mt-2 overflow-x-auto flex gap-7">
                 <div className="my-2">
-                  <label
-                    htmlFor="rutaProgramacion"
-                    className="font-semibold pl-3"
-                  >
+                  <label htmlFor="rutaProgramacion" className=" pl-3">
                     Ruta :
-                  </label>{" "}
+                  </label>
                   <br />
-                  <select
-                    name="rutaProgramacion"
-                    className="rounded-lg py-3 ml-2 pl-3 mt-2 w-96 bg-[#F3F1EF] border border-[#E9E9E9]"
-                    id="rutaProgramacion"
-                  >
-                    <option value="">Huancayo - Ayacucho</option>
-                    <option value="">Ayacucho - Huancayo</option>
-                  </select>
+                  <Select
+                    placeholder="Selecciona la ruta"
+                    style={{ width: 240 }}
+                    className="mt-2 ml-2 font-semibold"
+                    onChange={handleRuta}
+                    options={[
+                      {
+                        value: "RUTA-HA",
+                        label: "Huancayo - Ayacucho",
+                      },
+                      {
+                        value: "RUTA-AH",
+                        label: "Ayacucho - Huancayo",
+                      },
+                    ]}
+                  />
                 </div>
                 <div className="my-2">
-                  <label
-                    htmlFor="rutaProgramacion"
-                    className="font-semibold pl-3"
-                  >
+                  <label htmlFor="rutaProgramacion" className="pl-3">
                     Bus :
                   </label>
                   <br />
-                  <select
-                    name="rutaProgramacion"
-                    className="rounded-lg py-3 ml-2 pl-3 mt-2 w-36 bg-[#F3F1EF] border border-[#E9E9E9]"
-                    id="rutaProgramacion"
-                  >
-                    <option value="">B89-12T</option>
-                    <option value="">B9Z-98N</option>
-                    <option value="">B9Z-98N</option>
-                    <option value="">B9Z-98N</option>
-                    <option value="">B9Z-98N</option>
-                  </select>
+                  <Select
+                    placeholder="Selecciona el BUS"
+                    style={{ width: 240 }}
+                    className="mt-2 ml-2 font-semibold"
+                    onChange={handleBus}
+                    options={[
+                      {
+                        value: "BG8-145",
+                        label: "BG8-145",
+                      },
+                      {
+                        value: "BYZ-148",
+                        label: "BYZ-148",
+                      },
+                      {
+                        value: "BG8-146",
+                        label: "BG8-146",
+                      },
+                      {
+                        value: "BYZ-147",
+                        label: "BYZ-147",
+                      },
+                    ]}
+                  ></Select>
                 </div>
                 <div className="font-Roboto space-y-[6px] pt-[10px]">
-                  <label className="font-bold text-[16px]" htmlFor="datepicker">
+                  <label className="pl-1 text-[16px]" htmlFor="datepicker">
                     Fecha :{" "}
                   </label>
                   <br />
-                  <Space direction="vertical" size={12}>
-                    <DatePicker
-                      className="cursor-pointer h-[45px] w-56 bg-[#F3F1EF] border border-[#E9E9E9]"
-                      onChange={onDateChange}
-                      onOk={onOk}
-                      placeholder="Selecciona una fecha"
-                    />
-                  </Space>
+                  <DatePicker
+                    className=" cursor-pointer font-semibold w-56"
+                    onChange={onDateChange}
+                    onOk={onOk}
+                    placeholder="Selecciona la fecha"
+                  />
                 </div>
                 <div className="">
-                  <p className="font-semibold pt-3">Hora :</p>
+                  <p className="pt-3 pl-1">Hora :</p>
                   <TimePicker
                     format={format}
-                    // onChange={onTimeChange}
-                    className="cursor-pointer h-[45px] w-48 bg-[#F3F1EF] border border-[#E9E9E9]"
+                    onChange={onTimeChange}
+                    className="cursor-pointer w-48 mt-1 font-semibold "
                     defaultOpenValue={dayjs("07:00", format)}
                     minuteStep={15}
-                    placeholder="Selecciona una hora"
+                    placeholder="Selecciona la hora"
                   ></TimePicker>
                 </div>
 
                 <div className="">
-                  <button className="btn-crear mt-10 ml-7 text-sm">
+                  <button className="btn-crear mt-[35px] ml-12 text-sm">
                     Crear
                   </button>
                 </div>
